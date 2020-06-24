@@ -1,0 +1,29 @@
+<%%= f = form_for @changeset, "#",
+  id: "<%= schema.singular %>-form",
+  class: "needs-validation col-sm-12",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <div class="modal-header">
+    <h5 class="modal-title" id="modalTitle">
+      <%%= if !@<%= schema.singular %>.id do %>
+        <%%= gettext "New %{model}", model: gettext("<%= schema.human_singular %>") %>
+        <%% else %>
+        <%%= gettext "Editing %{model}: %{name}", model: gettext("<%= schema.human_singular %>"), name: @<%= schema.singular %>.name %>
+        <%% end %>
+    </h5>
+    <%%= live_patch raw("&times;"), to: @return_to, class: "close", "data-dismiss": "modal", "aria-label": "Close" %>
+  </div>
+
+  <div class="modal-body">
+    <%= for input <- inputs, input do %>
+      <%= input %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%%= live_redirect "Back", to: Routes.<%= schema.route_helper %>_index_path(@socket, :index), class: "btn btn-secondary btn-rounded" %>
+    <%%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary btn-rounded" %>
+  </div>
+</form>

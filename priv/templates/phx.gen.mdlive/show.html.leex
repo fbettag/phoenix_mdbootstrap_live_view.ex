@@ -1,0 +1,287 @@
+<%%= if @live_action in [:edit] do %>
+  <%%= live_modal @socket, <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web_namespace, schema.alias) %>Live.FormComponent,
+id: @<%= schema.singular %>.id,
+title: @page_title,
+action: @live_action,
+<%= schema.singular %>: @<%= schema.singular %>,
+return_to: Routes.<%= schema.route_helper %>_show_path(@socket, :show, @<%= schema.singular %>) %>
+<%% end %>
+
+<div class="container-fluid mt-5">
+
+  <!--Grid row-->
+  <div class="row wow fadeIn">
+
+    <!--Grid column-->
+    <div class="col-md-12 mb-12">
+
+      <!--Card-->
+      <div class="card card-cascade narrower">
+        <div class="col-md-12 mb-12 mr-0">
+
+          <!-- Card header -->
+          <div class="view view-cascade gradient-card-header special-color">
+            <%%= live_redirect gettext("Back"), to: Routes.<%= schema.route_helper %>_index_path(@socket, :index), class: "btn btn-rounded btn-md waves-effect waves-light m-0 float-right" %>
+            <%%= live_patch raw("<i class='fas fa-pen mr-2'></i>" <> gettext("Edit %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_show_path(@socket, :edit, @<%= schema.singular %>), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right" %>
+            <h4 class="h4-responsive mb-0 font-weight-bold">
+              <%%= gettext("<%= schema.human_singular %>") %>: <%%= @<%= schema.singular %>.name %>
+            </h4>
+          </div>
+
+          <!--Card content-->
+          <div class="card-body card-body-cascade pb-0">
+            <div class="row card-body pt-3">
+
+              <div class="container-fluid">
+
+                <!-- Section: Cards color -->
+                <section class="mt-2">
+
+                  <!-- Grid row -->
+                  <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-xl-6 col-md-6 mb-6">
+
+                      <!-- Panel -->
+                      <div class="card mb-4">
+
+                        <div class="card-header white-text primary-color">
+                          <h5 class="font-weight-500 my-1">Recent comments and replies</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                          <table class="table">
+                            <tbody>
+                              <%= for {k, _} <- schema.attrs do %>
+                                <tr>
+                                  <th class="border-top-0"><%= Phoenix.Naming.humanize(Atom.to_string(k)) %>:</th>
+                                  <td class="border-top-0"><%%= @<%= schema.singular %>.<%= k %> %></td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+
+                        </div>
+
+                      </div>
+                      <!-- Panel -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                  </div>
+                  <!-- Grid row -->
+
+                </section>
+
+                <div style="height: 5px"></div>
+
+                <!-- Section: Button icon -->
+                <section>
+
+                  <!-- Grid row -->
+                  <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+
+                      <!-- Card -->
+                      <div class="card">
+
+                        <!-- Card Data -->
+                        <div class="row mt-3">
+
+                          <div class="col-md-5 col-5 text-left pl-4">
+
+                            <a type="button" class="btn-floating btn-lg primary-color ml-4 waves-effect waves-light"><i class="far fa-eye" aria-hidden="true"></i></a>
+
+                          </div>
+
+                          <div class="col-md-7 col-7 text-right pr-5">
+
+                            <h5 class="ml-4 mt-4 mb-2 font-weight-bold">4,567 </h5>
+
+                            <p class="font-small grey-text">Unique Visitors</p>
+                          </div>
+
+                        </div>
+                        <!-- Card Data -->
+
+                        <!-- Card content -->
+                        <div class="row my-3">
+
+                          <div class="col-md-7 col-7 text-left pl-4">
+
+                            <p class="font-small font-up ml-4 font-weight-bold">Last month</p>
+
+                          </div>
+
+                          <div class="col-md-5 col-5 text-right pr-5">
+
+                            <p class="font-small grey-text">145,567</p>
+                          </div>
+
+                        </div>
+                        <!-- Card content -->
+
+                      </div>
+                      <!-- Card -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+
+                      <!-- Card -->
+                      <div class="card">
+
+                        <!-- Card Data -->
+                        <div class="row mt-3">
+
+                          <div class="col-md-5 col-5 text-left pl-4">
+
+                            <a type="button" class="btn-floating btn-lg warning-color ml-4 waves-effect waves-light"><i class="fas fa-user" aria-hidden="true"></i></a>
+
+                          </div>
+
+                          <div class="col-md-7 col-7 text-right pr-5">
+
+                            <h5 class="ml-4 mt-4 mb-2 font-weight-bold">4,567 </h5>
+                            <p class="font-small grey-text">New Users</p>
+
+                          </div>
+
+                        </div>
+                        <!-- Card Data -->
+
+                        <!-- Card content -->
+                        <div class="row my-3">
+
+                          <div class="col-md-7 col-7 text-left pl-4">
+                            <p class="font-small font-up ml-4 font-weight-bold">Last month</p>
+                          </div>
+
+                          <div class="col-md-5 col-5 text-right pr-5">
+                            <p class="font-small grey-text">145,567</p>
+                          </div>
+
+                        </div>
+                        <!-- Card content -->
+
+                      </div>
+                      <!-- Card -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+
+                      <!-- Card -->
+                      <div class="card">
+
+                        <!-- Card Data -->
+                        <div class="row mt-3">
+
+                          <div class="col-md-5 col-5 text-left pl-4">
+                            <a type="button" class="btn-floating btn-lg light-blue lighten-1 ml-4 waves-effect waves-light"><i class="fas fa-dollar-sign" aria-hidden="true"></i></a>
+                          </div>
+
+                          <div class="col-md-7 col-7 text-right pr-5">
+                            <h5 class="ml-4 mt-4 mb-2 font-weight-bold">4,567 </h5>
+                            <p class="font-small grey-text">Total Sales</p>
+                          </div>
+
+                        </div>
+                        <!-- Card Data -->
+
+                        <!-- Card content -->
+                        <div class="row my-3">
+
+                          <!-- Grid column -->
+                          <div class="col-md-7 col-7 text-left pl-4">
+                            <p class="font-small font-up ml-4 font-weight-bold">Last month</p>
+                          </div>
+                          <!-- Grid column -->
+
+                          <!-- Grid column -->
+                          <div class="col-md-5 col-5 text-right pr-5">
+                            <p class="font-small grey-text">145,567</p>
+                          </div>
+                          <!-- Grid column -->
+
+                        </div>
+                        <!-- Card content -->
+
+                      </div>
+                      <!-- Card -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+
+                      <!-- Card -->
+                      <div class="card">
+
+                        <!-- Card Data -->
+                        <div class="row mt-3">
+
+                          <div class="col-md-5 col-5 text-left pl-4">
+                            <a type="button" class="btn-floating btn-lg red accent-2 ml-4 waves-effect waves-light"><i class="fas fa-database" aria-hidden="true"></i></a>
+                          </div>
+
+                          <div class="col-md-7 col-7 text-right pr-5">
+                            <h5 class="ml-4 mt-4 mb-2 font-weight-bold">4,567</h5>
+                            <p class="font-small grey-text">Order Amount</p>
+                          </div>
+
+                        </div>
+                        <!-- Card Data -->
+
+                        <!-- Card content -->
+                        <div class="row my-3">
+
+                          <div class="col-md-7 col-7 text-left pl-4">
+                            <p class="font-small font-up ml-4 font-weight-bold">Last week</p>
+                          </div>
+
+                          <div class="col-md-5 col-5 text-right pr-5">
+                            <p class="font-small grey-text">145,567</p>
+                          </div>
+
+                        </div>
+                        <!-- Card content -->
+
+                      </div>
+                      <!-- Card -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                  </div>
+                  <!-- Grid row -->
+
+                </section>
+                <!-- Section: Button icon -->
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--/.Card-->
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!--Grid row-->
+
+</div>

@@ -1,0 +1,78 @@
+<%%= if @live_action in [:new, :edit] do %>
+  <%%= live_modal @socket, <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web_namespace, schema.alias) %>Live.FormComponent,
+	id: @<%= schema.singular %>.id || :new,
+	title: @page_title,
+	action: @live_action,
+	<%= schema.singular %>: @<%= schema.singular %>,
+	return_to: Routes.<%= schema.route_helper %>_index_path(@socket, :index) %>
+<%% end %>
+
+<div class="container-fluid mt-5">
+
+  <!--Grid row-->
+  <div class="row wow fadeIn">
+
+	<!--Grid column-->
+	<div class="col-md-12 mb-12">
+
+	  <!--Card-->
+	  <div class="card card-cascade narrower">
+		<div class="col-md-12 mb-12 mr-0">
+
+		  <!-- Card header -->
+		  <div class="view view-cascade gradient-card-header special-color">
+			<%%= live_patch raw("<i class='fas fa-plus mr-2'></i>" <> gettext("New %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_index_path(@socket, :new), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right" %>
+			<h4 class="h4-responsive mb-0 font-weight-bold">
+			  <%%= gettext "Listing %{model}", model: "<%= schema.human_plural %>" %>
+			</h4>
+		  </div>
+
+		  <!--Card content-->
+		  <div class="card-body card-body-cascade pb-0">
+			<div class="row card-body pt-3" phx-hook="LiveTable">
+
+			  <table class="table table-striped data-table" phx-update="prepend">
+				<thead>
+				  <tr>
+					<%= for {k, _} <- schema.attrs do %>				   <th><%%= gettext("<%= Atom.to_string(k) %>") %></th>
+					<% end %>
+					<th></th>
+				  </tr>
+				</thead>
+				<tbody id="<%= schema.plural %>">
+				  <%%= for <%= schema.singular %> <- @<%= schema.collection %> do %>
+					<tr id="<%= schema.singular %>-<%%= <%= schema.singular %>.id %>">
+					  <%= for {k, _} <- schema.attrs do %>				   <td><%%= <%= schema.singular %>.<%= k %> %></td>
+					  <% end %>
+					  <td>
+                        <div class="dropdown float-right">
+                          <button class="btn btn-primary btn-rounded btn-sm dropdown-toggle m-0 align-text-middle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%%= gettext "actions" %>&nbsp;&nbsp;&nbsp;</button>
+                          <div class="dropdown-menu">
+                            <!--div class="dropdown-divider"></div-->
+                            <%%= live_redirect gettext("Show"), to: Routes.<%= schema.route_helper %>_show_path(@socket, :show, <%= schema.singular %>), class: "dropdown-item" %>
+                            <%%= live_patch gettext("Edit"), to: Routes.<%= schema.route_helper %>_index_path(@socket, :edit, <%= schema.singular %>), class: "dropdown-item" %>
+                            <div class="dropdown-divider"></div>
+						    <%%= link gettext("Delete"), to: "#", phx_click: "delete", phx_value_id: <%= schema.singular %>.id, data: [confirm: gettext("are you sure you want to delete %{name}?", name: <%= schema.singular %>.name)], class: "dropdown-item" %>
+                          </div>
+                        </div>
+
+					  </td>
+					</tr>
+					<%% end %>
+				</tbody>
+			  </table>
+
+			</div>
+		  </div>
+
+		</div>
+		<!--/.Card-->
+
+	  </div>
+	</div>
+	<!--Grid column-->
+
+  </div>
+  <!--Grid row-->
+
+</div>
