@@ -32,7 +32,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
       {:ok, _<%= schema.singular %>} ->
         {:noreply,
          socket
-         |> put_flash(:info, "<%= schema.human_singular %> updated successfully")
+         |> put_flash(:info, gettext("%{model} updated successfully", model: gettext("<%= schema.human_singular %>")))
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -45,7 +45,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
       {:ok, _<%= schema.singular %>} ->
         {:noreply,
          socket
-         |> put_flash(:info, "<%= schema.human_singular %> created successfully")
+         |> put_flash(:info, gettext("%{model} created successfully", model: gettext("<%= schema.human_singular %>")))
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
