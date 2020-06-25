@@ -11,9 +11,7 @@ defmodule <%= inspect context.web_module %>.ModalComponent do
       phx-target="#<%%= @id %>"
       phx-page-loading>
 
-      <div class="phx-modal-content">
-        <%%= live_component @socket, @component, @opts %>
-      </div>
+      <%%= live_component @socket, @component, @opts %>
     </div>
     """
   end
