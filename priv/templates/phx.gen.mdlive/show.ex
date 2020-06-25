@@ -22,6 +22,6 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
     {:noreply, update(socket, :<%= schema.singular %>, <%= schema.singular %>)}
   end
 
-  defp page_title(:show), do: gettext("Show %{model}", gettext("<%= schema.human_singular %>"))
-  defp page_title(:edit), do: gettext("Edit %{model}", gettext("<%= schema.human_singular %>"))
+  defp page_title(:show), do: gettext("Show %{model}", model: gettext("<%= schema.human_singular %>"))
+  defp page_title(:edit), do: gettext("Edit %{model}", model: gettext("<%= schema.human_singular %>"))
 end
