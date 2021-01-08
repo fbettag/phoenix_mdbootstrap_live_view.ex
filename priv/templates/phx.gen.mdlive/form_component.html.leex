@@ -24,8 +24,8 @@
     </div>
 
     <div class="modal-footer">
-      <%%= live_redirect "Back", to: Routes.<%= schema.route_helper %>_index_path(@socket, :index), class: "btn btn-secondary btn-rounded" %>
-      <%%= submit "Save", phx_disable_with: "Saving...", class: "btn btn-primary btn-rounded" %>
+      <%%= live_redirect gettext("Back"), to: @return_to, class: "btn btn-secondary btn-rounded" %>
+      <%%= submit gettext("Save"), phx_disable_with: gettext("Saving..."), class: "btn btn-primary btn-rounded" %>
     </div>
   </form>
 </div>

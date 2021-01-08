@@ -31,7 +31,7 @@
 		  <div class="card-body card-body-cascade pb-0">
 			<div class="row card-body pt-3" phx-hook="LiveTable">
 
-			  <table class="table table-striped data-table" phx-update="prepend">
+			  <table class="table table-striped data-table">
 				<thead>
 				  <tr>
 					<%= for {k, _} <- schema.attrs do %>				   <th><%%= gettext("<%= Atom.to_string(k) %>") %></th>
@@ -39,7 +39,7 @@
 					<th></th>
 				  </tr>
 				</thead>
-				<tbody id="<%= schema.plural %>">
+				<tbody id="<%= schema.plural %>" phx-update="prepend">
 				  <%%= for <%= schema.singular %> <- @<%= schema.collection %> do %>
 					<tr id="<%= schema.singular %>-<%%= <%= schema.singular %>.id %>">
 					  <%= for {k, _} <- schema.attrs do %>				   <td><%%= <%= schema.singular %>.<%= k %> %></td>
