@@ -21,7 +21,7 @@
 
 		  <!-- Card header -->
 		  <div class="view view-cascade gradient-card-header special-color">
-			<%%= live_patch raw("<i class='fas fa-plus'></i>" <> gettext("New %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_index_path(@socket, :new), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right mr-2" %>
+			<%%= live_patch raw("<i class='fas fa-plus mr-2'></i>" <> gettext("New %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_index_path(@socket, :new), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right mr-2" %>
 			<h4 class="h4-responsive mb-0 font-weight-bold">
 			  <%%= gettext "Listing %{model}", model: "<%= schema.human_plural %>" %>
 			</h4>
