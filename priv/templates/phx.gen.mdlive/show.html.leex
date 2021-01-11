@@ -22,7 +22,7 @@ return_to: Routes.<%= schema.route_helper %>_show_path(@socket, :show, @<%= sche
           <!-- Card header -->
           <div class="view view-cascade gradient-card-header special-color">
             <%%= live_redirect gettext("Back"), to: Routes.<%= schema.route_helper %>_index_path(@socket, :index), class: "btn btn-rounded btn-md waves-effect waves-light m-0 float-right" %>
-            <%%= live_patch raw("<i class='fas fa-pen mr-2'></i>" <> gettext("Edit %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_show_path(@socket, :edit, @<%= schema.singular %>), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right" %>
+            <%%= live_patch raw("<i class='fas fa-pen'></i>" <> gettext("Edit %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_show_path(@socket, :edit, @<%= schema.singular %>), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right mr-2" %>
             <h4 class="h4-responsive mb-0 font-weight-bold">
               <%%= gettext("<%= schema.human_singular %>") %>: <%%= @<%= schema.singular %>.name %>
             </h4>
