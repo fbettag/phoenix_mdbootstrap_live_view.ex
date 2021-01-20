@@ -1,8 +1,8 @@
 defmodule Mix.Tasks.Phx.Gen.Mdlive do
-  @shortdoc "Generates LiveView, templates, and context for a resource with MD Bootstrap design"
+  @shortdoc "Generates LiveView, templates, and context for a resource with Material Design Bootstrap markup"
 
   @moduledoc """
-  Generates LiveView, templates, and context for a resource.
+  Generates LiveView, templates, and context for a resource with Material Design Bootstrap markup.
 
       mix phx.gen.mdlive Accounts User users name:string age:integer
 
@@ -83,7 +83,7 @@ defmodule Mix.Tasks.Phx.Gen.Mdlive do
   """
   use Mix.Task
 
-  alias Mix.Phoenix.{Context}
+  alias Mix.Phoenix.Context
   alias Mix.Tasks.Phx.Gen
 
   @doc false
@@ -98,7 +98,6 @@ defmodule Mix.Tasks.Phx.Gen.Mdlive do
     binding = [context: context, schema: schema, inputs: inputs(schema)]
     paths = Mix.Phoenix.generator_paths() ++ [:phoenix_mdbootstrap_live_view]
 
-    IO.inspect paths
     prompt_for_conflicts(context)
 
     context
