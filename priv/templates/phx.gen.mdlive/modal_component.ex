@@ -1,4 +1,4 @@
-defmodule <%= inspect context.web_module %>.ModalComponent do
+defmodule <%= inspect context.web_module %>.LiveComponents.Modal do
   use <%= inspect context.web_module %>, :live_component
 
   @impl true

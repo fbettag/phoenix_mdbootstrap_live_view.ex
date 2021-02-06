@@ -14,7 +14,7 @@ defmodule PhoenixMDBootstrapLiveView.MixProject do
       description: "Material Design Bootstrap 4 LiveViews for Phoenix Applications",
       package: package(),
       aliases: aliases(),
-      deps: deps(),
+      deps: deps()
     ]
   end
 

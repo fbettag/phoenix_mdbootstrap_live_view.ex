@@ -22,7 +22,7 @@ return_to: Routes.<%= schema.route_helper %>_show_path(@socket, :show, @<%= sche
           <!-- Card header -->
           <div class="view view-cascade gradient-card-header special-color">
             <%%= live_redirect gettext("Back"), to: Routes.<%= schema.route_helper %>_index_path(@socket, :index), class: "btn btn-rounded btn-md waves-effect waves-light m-0 float-right" %>
-            <%%= live_patch raw("<i class='fas fa-pen'></i>" <> gettext("Edit %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_show_path(@socket, :edit, @<%= schema.singular %>), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right mr-2" %>
+            <%%= live_patch icon_text("fas fa-edit mr-2", gettext("Edit %{model}", model: gettext("<%= schema.human_singular %>"))), to: Routes.<%= schema.route_helper %>_show_path(@socket, :edit, @<%= schema.singular %>), class: "btn btn-primary btn-rounded btn-md waves-effect waves-light m-0 float-right mr-2" %>
             <h4 class="h4-responsive mb-0 font-weight-bold">
               <%%= gettext("<%= schema.human_singular %>") %>: <%%= @<%= schema.singular %>.name %>
             </h4>
@@ -47,17 +47,20 @@ return_to: Routes.<%= schema.route_helper %>_show_path(@socket, :show, @<%= sche
                       <div class="card mb-4">
 
                         <div class="card-header white-text primary-color">
-                          <h5 class="font-weight-500 my-1">Recent comments and replies</h5>
+                          <h5 class="font-weight-500 my-1"><%%= gettext "%{model} Data", model: gettext("<%= schema.human_singular %>") %></h5>
                         </div>
 
                         <div class="card-body">
 
                           <table class="table">
                             <tbody>
-                              <%= for {k, _} <- schema.attrs do %>
+                              <%= for {k, t} <- schema.attrs do %>
                                 <tr>
-                                  <th class="border-top-0"><%= Phoenix.Naming.humanize(Atom.to_string(k)) %>:</th>
-                                  <td class="border-top-0"><%%= @<%= schema.singular %>.<%= k %> %></td>
+                                  <th class="border-top-0"><%%= gettext "<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>" %>:</th>
+                                  <%= case to do %>
+                                    <% :boolean -> %><td class="border-top-0"><%%= checkmark @<%= schema.singular %>.<%= k %> %></td>
+                                    <% _ -> %><td class="border-top-0"><%%= @<%= schema.singular %>.<%= k %> %></td>
+                                  <% end %>
                                 </tr>
                               <% end %>
                             </tbody>
