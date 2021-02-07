@@ -57,7 +57,7 @@ return_to: Routes.<%= schema.route_helper %>_show_path(@socket, :show, @<%= sche
                               <%= for {k, t} <- schema.attrs do %>
                                 <tr>
                                   <th class="border-top-0"><%%= gettext "<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>" %>:</th>
-                                  <%= case to do %>
+                                  <%= case t do %>
                                     <% :boolean -> %><td class="border-top-0"><%%= checkmark @<%= schema.singular %>.<%= k %> %></td>
                                     <% _ -> %><td class="border-top-0"><%%= @<%= schema.singular %>.<%= k %> %></td>
                                   <% end %>
