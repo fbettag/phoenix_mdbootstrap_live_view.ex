@@ -6,7 +6,7 @@ defmodule PhoenixMDBootstrapLiveView.MixProject do
   def project do
     [
       app: :phoenix_mdbootstrap_live_view,
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.7",
       source_url: @project_url,
       homepage_url: @project_url,

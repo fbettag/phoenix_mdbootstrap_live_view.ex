@@ -9,7 +9,7 @@ This package can be installed by adding `phoenix_mdbootstrap_live_view` to your 
 ```elixir
 def deps do
   [
-    {:phoenix_mdbootstrap_live_view, "~> 0.1.2"}
+    {:phoenix_mdbootstrap_live_view, "~> 0.1"}
   ]
 end
 ```
